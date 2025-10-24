@@ -9,7 +9,7 @@ const firebaseConfig = {
   "apiKey": "AIzaSyBJFUkbfGhN95sZXkEWeikolvXn3d18PGI",
   "authDomain": "smartclass-lanka.firebaseapp.com",
   "projectId": "smartclass-lanka",
-  "storageBucket": "smartclass-lanka.firebasestorage.app",
+  storageBucket: "smartclass-lanka.appspot.com",
   "messagingSenderId": "981074409095",
   "appId": "1:981074409095:web:4c146c6e8fc34fe2f2ea22",
   "measurementId": "G-W35QFEPYN2"
