@@ -22,9 +22,19 @@ export const storage = getStorage(app);
 
 // MVP: teacher sign-in via Firestore (plain password stored in 'teachers' docs)
 export async function signInTeacher(email, password) {
-  const q = query(collection(db, 'teachers'), where('email','==', email), where('password','==', password), where('status','!=','suspended'));
+  email = email.trim().toLowerCase();
+  password = password.trim();
+
+  const teachersRef = collection(db, "teachers");
+  const q = query(teachersRef, where("email", "==", email), where("status", "==", "active"));
   const snap = await getDocs(q);
-  if(snap.empty) return null;
-  const d = snap.docs[0];
-  return { id: d.id, ...d.data() };
+
+  if (snap.empty) return null;
+
+  const docRef = snap.docs[0];
+  const teacher = { id: docRef.id, ...docRef.data() };
+
+  if (teacher.password !== password) return null;
+
+  return teacher;
 }
